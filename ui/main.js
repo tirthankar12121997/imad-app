@@ -1,20 +1,26 @@
-console.log('Loaded!');
-alert('Welcome to the App');
+var button = document.getElementById('counter');
 
-var img = document.getElementById('madi');
-var element = document.getElementById('content');
+button.onclick = function(){
 
-element.onclick = function(){
-	element.innerHTML = 'New Value';
-}
+	//create a request object
+	var request = new XMLHttpRequest();
 
-var posx = 0;
+	//capture the response
+	request.onreadystatechange = function(){
+		if(request.readyState === XMLHttpRequest.DONE)
+		{
+			//take some action
+			if(request.status === 200)
+			{
+				var counter = request.responseText;
+				var span = document.getElementById('count');
+				span.innerHTML = counter.toString();
+			}
+		}
+		//not done yet
+	};
 
-function moveRight(){
-	posx = posx + 5;
-	img.style.marginLeft = posx + 'px';
-}
-
-img.onclick = function(){
-    var interval = setInterval(moveRight,50);
+	//make the request
+	request.open('GET','http://b116062.imad.hasura-app.io/counter',true);
+	request.send(null);
 };

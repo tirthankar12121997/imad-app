@@ -19,3 +19,9 @@ body {
 .img-medium {
     height: 200px;
 }
+
+.container {
+    margin-top: 50px;
+    text-align: center;
+    padding: 5px;
+}

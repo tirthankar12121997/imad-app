@@ -36,11 +36,14 @@ function createtemplate (data) {
     <html>
         <head>
             <title>${title}</title>
+            <link href='/ui/style.css'>
         </head>
         <body>
-            <h2>${heading}</h2>
-            <p>${date}</p>
-            <p>${content}</p>
+            <div class='container'>
+                <h2>${heading}</h2>
+                <p>${date}</p>
+                <p>${content}</p>
+            </div>
         </body>
     </html>`;
     return htmltemplate;

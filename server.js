@@ -36,7 +36,7 @@ function createtemplate (data) {
     <html>
         <head>
             <title>${title}</title>
-            <link href='/ui/style.css'>
+            <link href='/ui/style.css' rel = 'stylesheet'>
         </head>
         <body>
             <div class='container'>

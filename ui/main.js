@@ -1,12 +1,19 @@
-var img = document.getElementById("madi");
+var btn = document.getElementById("counter");
+var count = document.getElementById("count");
 
-var marginright = 0;
 
-function moveleft () {
-    marginright = marginright + 2;
-    img.style.marginRight = marginright + 'px';
-}
-
-img.onclick = function () {
-    setInterval(moveleft,50);
+btn.onclick = function () {
+  var hr = new XMLHttpRequest();
+  hr.onreadystatechange = function () {
+    if(hr.readyState === XMLHttpRequest.DONE)
+    {
+        if(hr.status === 200)
+        {
+            var out = hr.responseText;
+            count.innerHTML = out.toString();
+        }
+    }
+  };
+  hr.open('GET','http://tirthankarnayak.imad.hasura-app.io/counter',true);
+  hr.send(null);
 };

@@ -19,7 +19,6 @@ btn.onclick = function () {
 };
 
 var submit_btn = document.getElementById("submit_btn");
-var name = document.getElementById("name");
 var list = document.getElementById("list");
 
 submit_btn.onclick = function () {
@@ -40,6 +39,7 @@ submit_btn.onclick = function () {
         }
     }
   };
+  var name = document.getElementById("name");
   name = name.value;
   hr.open('GET','http://tirthankarnayak.imad.hasura-app.io/getname?name='+name,true);
   hr.send(null);

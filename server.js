@@ -61,6 +61,14 @@ app.get('/counter', function (req,res) {
   res.send(counter.toString());    
 });
 
+var namelist = [];
+
+app.get('/getname',function (req,res) {
+  var name = req.query.name;
+  namelist.push(name);
+  res.send(JSON.stringify(namelist));
+});
+
 app.get('/:articlename', function (req, res) {
     var articlename = req.params.articlename;
     res.send(createtemplate (articles[articlename]) );

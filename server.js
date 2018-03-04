@@ -69,7 +69,7 @@ app.get('/test-db', function(req, res){
         else
         {
             var obj = result.rows;
-            res.send(JSON.stringify(obj));
+            res.send(JSON.stringify(obj[0].id));
         }
     });
 });

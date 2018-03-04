@@ -50,7 +50,7 @@ function createtemplate (data) {
         <body>
             <div class='container'>
                 <h2>${heading}</h2>
-                <p>${date}</p>
+                <p>${date.toDateString()}</p>
                 <p>${content}</p>
             </div>
         </body>

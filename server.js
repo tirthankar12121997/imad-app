@@ -103,7 +103,7 @@ app.get('/articles', function (req, res) {
         else
         {
             var obj = result.rows;
-            res.send(createtemplate(obj));
+            res.send(createtemplate(obj[0]));
         }
     });
     

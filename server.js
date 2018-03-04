@@ -95,7 +95,7 @@ app.get('/getname',function (req,res) {
 
 app.get('/articles', function (req, res) {
     var articleid = req.query.id;
-    pool.query('select * from articles where id = "articleid"',function (err,result){
+    pool.query('select * from articles where id = '+articleid,function (err,result){
         if(err)
         {
             res.status(500).send(err.toString());

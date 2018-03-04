@@ -6,11 +6,9 @@ var config = {
   user: 'tirthankarnayak',
   database: 'tirthankarnayak',
   host: 'http://db.imad.hasura-app.io',
-  port: '80',
+  port: '5432',
   password: process.env.DB_PASSWORD
 };
-
-var pool = new Pool(config);
 
 var app = express();
 app.use(morgan('combined'));
@@ -59,6 +57,8 @@ function createtemplate (data) {
     </html>`;
     return htmltemplate;
 }
+
+var pool = new Pool(config);
 
 app.get('/test-db', function(req, res){
     pool.query('select * from test', function(err,result){

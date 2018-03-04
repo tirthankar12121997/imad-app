@@ -102,8 +102,8 @@ app.get('/articles', function (req, res) {
         }
         else
         {
-            var obj = result.rows;
-            res.send(createtemplate(obj[0]));
+            var obj = result.rows[0];
+            res.send(createtemplate(obj));
         }
     });
     

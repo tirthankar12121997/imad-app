@@ -68,8 +68,8 @@ app.get('/test-db', function(req, res){
         }
         else
         {
-            var obj = JSON.parse(result);
-            res.send(obj[0]);
+            var obj = result.rows;
+            res.send(obj.toString());
         }
     });
 });

@@ -69,7 +69,7 @@ app.get('/test-db', function(req, res){
         else
         {
             var obj = result.rows;
-            res.send(JSON.stringify(obj[0].id));
+            res.send(JSON.stringify(obj));
         }
     });
 });
@@ -93,9 +93,20 @@ app.get('/getname',function (req,res) {
   res.send(JSON.stringify(namelist));
 });
 
-app.get('/:articlename', function (req, res) {
-    var articlename = req.params.articlename;
-    res.send(createtemplate (articles[articlename]) );
+app.get('/articles', function (req, res) {
+    var articleid = req.query.id;
+    pool.query('select * from articles where id = ?',[articleid],function (err,result){
+        if(err)
+        {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            var obj = result.rows;
+            res.send(createtemplate(obj));
+        }
+    });
+    
 });
 
 app.get('/ui/style.css', function (req, res) {

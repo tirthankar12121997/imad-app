@@ -102,8 +102,15 @@ app.get('/articles', function (req, res) {
         }
         else
         {
-            var obj = result.rows[0];
-            res.send(createtemplate(obj));
+            if(result.rows.length === 0)
+            {
+                res.status(404).send("article not found");
+            }
+            else
+            {
+                var obj = result.rows[0];
+                res.send(createtemplate(obj));
+            }
         }
     });
     

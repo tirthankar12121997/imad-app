@@ -128,6 +128,10 @@ app.get('/check-login', function (req, res) {
     }
 });
 
+app.get('/logout', function (req, res) {
+    delete req.session;
+});
+
 app.get('/articles', function (req, res) {
     var articleid = req.query.id;
     pool.query('select * from articles where id = $1',[articleid],function (err,result){

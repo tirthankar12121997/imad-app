@@ -62,7 +62,7 @@ app.get('/', function (req, res) {
 
 function hash( input , salt) {
     var hashedString = crypto.pbkdf2Sync(input, salt, 100000, 512, 'sha512');
-    return ['pbkdf2Sync','100000',salt.toString('hex'),hashedString.toString('hex')].join('$');
+    return ['pbkdf2Sync','100000',salt,hashedString.toString('hex')].join('$');
 }
 
 app.get('/hash/:input', function (req , res){
@@ -75,7 +75,7 @@ app.get('/hash/:input', function (req , res){
 app.post('/create-user', function (req , res) {
     var username = req.body.username;
     var password = req.body.password;
-    var salt = crypto.randomBytes(128);
+    var salt = crypto.randomBytes(128).toString('hex');
     var dbstring = hash( password , salt );
     pool.query('insert into "user" (username , password) values ($1,$2)',[username,dbstring], function (err , result) {
         if(err) {
@@ -100,7 +100,7 @@ app.post('/login', function (req , res) {
         else {
             var dbstring = result.rows[0].password;
             var salt = dbstring.split('$')[2];
-            var hashedpass = hash (password , salt);
+            var hashedpass = hash(password,salt);
             if(hashedpass === dbstring) {
                 res.status(200).send('logged in successfully');
             }

@@ -102,7 +102,7 @@ app.post('/login', function (req , res) {
             var salt = dbstring.split('$')[2];
             var hashedpass = hash(password,salt);
             if(hashedpass === dbstring) {
-                res.status(200).send('logged in successfully');
+                res.status(200).send('logged in successfully\n');
             }
             else {
                 res.status(403).send('password wrong');

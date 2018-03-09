@@ -110,7 +110,7 @@ app.post('/login', function (req , res) {
             var salt = dbstring.split('$')[2];
             var hashedpass = hash(password,salt);
             if(hashedpass === dbstring) {
-                req.session.auth = {userId: result.rows[0].id};
+                req.session.obj = {userId: result.rows[0].id};
                 res.send('credentials correct');
             }
             else {
@@ -121,15 +121,15 @@ app.post('/login', function (req , res) {
 });
 
 app.get('/check-login', function (req, res) {
-    if(req.session && req.session.auth && req.session.auth.userId) {
-        res.send('User Id : '+req.session.auth.userId.toString());
+    if(req.session && req.session.obj && req.session.obj.userId) {
+        res.send('User Id : '+req.session.obj.userId.toString());
     } else {
         res.send('user not logged in');
     }
 });
 
 app.get('/logout', function (req, res) {
-    delete req.session.auth;
+    delete req.session.obj;
     res.send('logged out');
 });
 

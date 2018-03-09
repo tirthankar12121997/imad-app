@@ -130,7 +130,7 @@ app.get('/check-login', function (req, res) {
 
 app.get('/logout', function (req, res) {
     delete req.session;
-    req.send('logged out');
+    res.send('logged out');
 });
 
 app.get('/articles', function (req, res) {

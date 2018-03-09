@@ -60,14 +60,14 @@ app.get('/', function (req, res) {
 
 function hash( input , salt) {
     var hashedString = crypto.pbkdf2Sync(input, salt, 100000, 512, 'sha512');
-    return hashedString;
+    return ['pbkdf2Sync','100000',salt,hashedString.toString('hex')].join('$');
 }
 
 app.get('/hash/:input', function (req , res){
     var input = req.params.input;
     var salt = crypto.randomBytes(128);
     var hashedString = hash(input,salt);
-    res.send(hashedString.toString('hex'));
+    res.send(hashedString);
 });
 
 var counter = 0;

@@ -48,7 +48,7 @@ function createtemplate (data) {
     return htmltemplate;
 }
 
-
+var pool = new Pool(config);
 
 app.get('/test-db', function(req, res){
     pool.query('select * from test', function(err,result){
@@ -94,8 +94,6 @@ app.post('/create-user', function (req , res) {
         }
     });
 });
-
-var pool = new Pool(config);
 
 app.post('/login', function (req , res) {
     var username = req.body.username;

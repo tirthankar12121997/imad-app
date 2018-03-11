@@ -95,6 +95,8 @@ app.post('/create-user', function (req , res) {
     });
 });
 
+var pool = new Pool(config);
+
 app.post('/login', function (req , res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -133,7 +135,7 @@ app.get('/logout', function (req, res) {
     res.send('logged out');
 });
 
-var pool = new Pool(config);
+
 
 app.get('/articles', function (req, res) {
     var articleid = req.query.id;

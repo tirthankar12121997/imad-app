@@ -26,17 +26,21 @@ app.use(session({
 }));
 
 function createtemplate (data) {
-    
+    var title = data.title;
+    var heading = data.heading;
+    var date = data.date;
     var content = data.content;
     var htmltemplate = `
     <html>
         <head>
-            <title>nothing</title>
+            <title>${title}</title>
             <link href='/ui/style.css' rel = 'stylesheet'>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
         <body>
             <div class='container'>
+                <h2>${heading}</h2>
+                <p>${date.toDateString()}</p>
                 <p>${content}</p>
             </div>
         </body>
@@ -44,16 +48,7 @@ function createtemplate (data) {
     return htmltemplate;
 }
 
-var articles = {
-  'article-one': {
-      content: `hello`
-  }  
-};
 
-app.get('/:articleName', function (req, res) {
-    var articleName = req.params.articleName;
-    res.send(createtemplate(articles[articleName]));
-});
 
 app.get('/test-db', function(req, res){
     pool.query('select * from test', function(err,result){
